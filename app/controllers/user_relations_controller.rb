@@ -10,8 +10,6 @@ class UserRelationsController < ApplicationController
             new_follow = UserRelation.create!(follow_params)
             render json: new_follow, status: :created
         end
-        
-        
     end
 
     private

@@ -3,7 +3,7 @@ class CreateUserRelations < ActiveRecord::Migration[7.0]
     create_table :user_relations do |t|
       t.references :user
       t.integer :user2_id
-      t.string :type
+      t.string :rel_type
 
       t.timestamps
     end

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :user_activities
+  resources :episodes
+  resources :user_subscriptions
+  resources :podcasts
   resources :user_relations
   resources :users, only: [:create]
 
@@ -8,6 +12,8 @@ Rails.application.routes.draw do
 
 
   post "/follow", to: "user_relations#follow"
+
+  post "/subscribe", to: "user_subscriptions#create"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
