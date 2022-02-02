@@ -22,6 +22,10 @@ class PodcastsController < ApplicationController
         render json: podcast, status: :ok
     end
 
+    def random
+        render json: Podcast.all.order("random()").limit(4).as_json, status: :ok
+    end
+
     def updated
     end
 
