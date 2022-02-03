@@ -3,7 +3,7 @@ class CreateUserActivities < ActiveRecord::Migration[7.0]
     create_table :user_activities do |t|
 
       t.references :user
-      t.references :episodes
+      t.references :episode
       t.references :podcast
 
       t.string :activity_type

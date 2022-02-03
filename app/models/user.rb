@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
     has_many :user_relations
     has_many :user_subscriptions
+    has_many :user_activities
 
     validates :username, presence: true, uniqueness: true
     validates :first_name, :last_name, presence: true
