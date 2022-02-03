@@ -46,15 +46,15 @@ ActiveRecord::Schema.define(version: 2022_02_02_020611) do
 
   create_table "user_activities", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "episodes_id"
-    t.bigint "podcast_id"
+    t.bigint "episode_id"
+    t.bigint "podcast_id"db
     t.string "activity_type"
     t.integer "rating"
     t.string "review"
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["episodes_id"], name: "index_user_activities_on_episodes_id"
+    t.index ["episode_id"], name: "index_user_activities_on_episode_id"
     t.index ["podcast_id"], name: "index_user_activities_on_podcast_id"
     t.index ["user_id"], name: "index_user_activities_on_user_id"
   end
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 2022_02_02_020611) do
     t.string "last_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "profilePic"
+    t.string "profile_pic"
   end
 
 end

@@ -10,8 +10,11 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create"
   post "/login", to: "users#login"
   get "/auto_login", to: "users#auto_login"
-  get "/my-podcasts/:id", to: "podcasts#my_podcasts"
 
+  get "/my-podcasts/:id", to: "podcasts#my_podcasts"
+  get "/my-activity/:id", to: "user_activities#my_activities"
+
+  post "/listened", to: "user_activities#listened"
 
   post "/follow", to: "user_relations#follow"
 
