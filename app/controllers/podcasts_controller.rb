@@ -22,6 +22,12 @@ class PodcastsController < ApplicationController
         render json: podcast, status: :ok
     end
 
+    # return all of the podcasts that a user is subscribed to
+    def my_podcasts
+        subscriptions = UserSubscription.where(:user_id=>params[:id])
+        render json: subscriptions, include: :podcast, status: :ok
+    end
+
     def random
         render json: Podcast.all.order("random()").limit(4).as_json, status: :ok
     end

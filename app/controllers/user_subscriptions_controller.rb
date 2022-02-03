@@ -1,6 +1,6 @@
 class UserSubscriptionsController < ApplicationController
 
-    before_action :authorized, only: [:updated]
+    before_action :authorized
 
     def create
         subscription = UserSubscription.find_by(user_id: params[:user_id], podcast_id: params[:podcast_id])

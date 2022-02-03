@@ -9,7 +9,7 @@ class UsersController < ApplicationController
           token = encode_token({user_id: @user.id})
           render json: {user: @user, token: token}
         else
-          render json: {error: "Invalid username or password"}
+          render json: {error: "Invalid username or password"}, status: :not_acceptable
         end
       end
 
@@ -26,7 +26,11 @@ class UsersController < ApplicationController
       end
 
       def auto_login
-        render json: @user
+        if logged_in_user
+          render json: {user: @user}
+        else
+          render json: {errors: "No user logged in."}
+        end
       end
 
       private
