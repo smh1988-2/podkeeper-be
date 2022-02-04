@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2022_02_02_020611) do
   create_table "user_activities", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "episode_id"
-    t.bigint "podcast_id"db
+    t.bigint "podcast_id"
     t.string "activity_type"
     t.integer "rating"
     t.string "review"
