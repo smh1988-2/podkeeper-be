@@ -20,7 +20,9 @@ Rails.application.routes.draw do
 
   # routes to create a new UserRelation and to return existing relations for a user
   post "/follow", to: "user_relations#follow"
-  get "/following/:id", to: "user_relations#existing_relations"
+  get "/following/:id", to: "user_relations#existing_relations_following"
+
+  get "/followers/:id", to: "user_relations#existing_relations_followers"
 
   post "/subscribe", to: "user_subscriptions#create"
 

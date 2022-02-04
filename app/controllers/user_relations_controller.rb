@@ -14,13 +14,28 @@ class UserRelationsController < ApplicationController
         end
     end
 
-    def existing_relations
-        #the .first is wrong. how to return the user 2 for ALL existing relations???
-        user2_info = User.find_by_id(UserRelation.first.user2_id)
-
+    def existing_relations_following
         follows = UserRelation.where(:user_id=>params[:id])
         
-        render json: follows, include: {"user"=>user2_info}, status: :ok
+        # loops through each relationship the currentUser has and finds the user record for user2_id
+        user_follwing = []
+        follows.each do |u|
+            user_follwing << u.user2
+        end
+        
+        render json: user_follwing, status: :ok
+    end
+
+    def existing_relations_followers
+        followers = UserRelation.where(:user2_id=>params[:id])
+
+        user_follwers = []
+        followers.each do |u|
+            user_follwers << u.user
+        end
+        
+        render json: user_follwers, status: :ok
+        
     end
 
     def return_user

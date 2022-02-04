@@ -7,10 +7,10 @@ Episode.destroy_all
 puts "Starting seeding"
 
 puts "Seeding users"
-User.create!(username: "smh1988", password:"123", first_name: "Sean", last_name: "Hurley")
-User.create!(username: "pfeytser", password:"123", first_name: "Peter", last_name: "Feytser")
-User.create!(username: "oakie", password:"123", first_name: "Oakland", last_name: "Feytser")
-User.create!(username: "purrc", password:"123", first_name: "Purrc", last_name: "Hurley")
+User.create!(username: "smh1988", password:"123", first_name: "Sean", last_name: "Hurley", profile_pic: "test-profile.png")
+User.create!(username: "pfeytser", password:"123", first_name: "Peter", last_name: "Feytser", profile_pic: "test-profile.png")
+User.create!(username: "oakie", password:"123", first_name: "Oakland", last_name: "Feytser", profile_pic: "test-profile.png")
+User.create!(username: "purrc", password:"123", first_name: "Purrc", last_name: "Hurley", profile_pic: "test-profile.png")
 puts "Finished seeding users"
 
 
