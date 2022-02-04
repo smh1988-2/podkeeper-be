@@ -61,10 +61,11 @@ ActiveRecord::Schema.define(version: 2022_02_02_020611) do
 
   create_table "user_relations", force: :cascade do |t|
     t.bigint "user_id"
-    t.integer "user2_id"
+    t.bigint "user2_id"
     t.string "rel_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user2_id"], name: "index_user_relations_on_user2_id"
     t.index ["user_id"], name: "index_user_relations_on_user_id"
   end
 
@@ -88,4 +89,6 @@ ActiveRecord::Schema.define(version: 2022_02_02_020611) do
     t.string "profile_pic"
   end
 
+  add_foreign_key "user_relations", "users"
+  add_foreign_key "user_relations", "users", column: "user2_id"
 end
