@@ -16,7 +16,11 @@ Rails.application.routes.draw do
 
   post "/listened", to: "user_activities#listened"
 
+  get "/user-search/:id", to: "user_relations#return_user"
+
+  # routes to create a new UserRelation and to return existing relations for a user
   post "/follow", to: "user_relations#follow"
+  get "/following/:id", to: "user_relations#existing_relations"
 
   post "/subscribe", to: "user_subscriptions#create"
 
