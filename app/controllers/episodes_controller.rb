@@ -17,7 +17,9 @@ class EpisodesController < ApplicationController
 
     def index
         episodes = Episode.all
-        render json: episodes, status: :ok
+        response.headers["item_count"] = episodes.count
+        paginate json: episodes
+        # , status: :ok
     end
 
     def show
