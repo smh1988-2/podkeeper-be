@@ -1,6 +1,7 @@
 class EpisodeSerializer < ActiveModel::Serializer
   attributes :podcast_id, 
   :trackName,
+  :episodeUrl,
   :description,
   :releaseDate,
   :artworkUrl160,
