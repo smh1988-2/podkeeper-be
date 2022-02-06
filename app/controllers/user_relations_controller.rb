@@ -35,7 +35,6 @@ class UserRelationsController < ApplicationController
         end
         
         render json: user_follwers, status: :ok
-        
     end
 
     def return_user
