@@ -1,6 +1,6 @@
 class PodcastsController < ApplicationController
 
-    before_action :authorized, only: [:updated]
+    before_action :require_login, only: [:updated]
 
     def create
         podcast = Podcast.find_by_collectionId(params[:collectionId])

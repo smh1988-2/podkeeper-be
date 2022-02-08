@@ -1,42 +1,43 @@
 class UsersController < ApplicationController
 
-    before_action :authorized, only: [:auto_login, :create]
+  skip_before_action :require_login, only: [:create]
 
      # register a new user
      def create
-        @user = User.create!(:username=>params[:username], :password=>params[:password], :first_name=>params[:first_name], :last_name=>params[:last_name])
-        if @user.valid?
-          token = encode_token({user_id: @user.id})
-          render json: {user: @user, token: token}, status: :ok
+        user = User.create!(user_params)
+        if user.valid?
+          payload = {user_id: user.id}
+          token = encode_token(payload)
+          render json: {user: user, jwt: token}, status: :ok
         else
-          render json: {error: "Invalid username or password"}, status: :not_acceptable
+          render json: {errors: user.errors.full_messages}, status: :not_acceptable
         end
       end
 
-      # log in as an existing user
-      def login
-        @user = User.find_by(username: params[:username])
+      # # log in as an existing user
+      # def login
+      #   @user = User.find_by(username: params[:username])
     
-        if @user && @user.authenticate(params[:password])
-          token = encode_token({user_id: @user.id})
-          render json: {user: @user, token: token}
-        else
-          render json: {error: "Invalid username or password!!!"}, status: :unprocessable_entity
-        end
-      end
+      #   if @user && @user.authenticate(params[:password])
+      #     token = encode_token({user_id: @user.id})
+      #     render json: {user: @user, token: token}
+      #   else
+      #     render json: {error: "Invalid username or password!!!"}, status: :unprocessable_entity
+      #   end
+      # end
 
-      def auto_login
-        if logged_in_user
-          render json: {user: @user}
-        else
-          render json: {errors: "No user logged in."}
-        end
-      end
+      # def auto_login
+      #   if logged_in_user
+      #     render json: {user: @user}
+      #   else
+      #     render json: {errors: "No user logged in."}
+      #   end
+      # end
 
       private
 
       def user_params
-        params.require(:user).permit(:username, :password, :first_name, :last_name)
+        params.permit(:username, :password)
       end
 
 end

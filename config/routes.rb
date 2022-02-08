@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   resources :users, only: [:create]
 
   # Auth routes
-  post "/signup", to: "users#create"
-  post "/login", to: "users#login"
-  get "/auto_login", to: "users#auto_login"
+  post "/login", to: "auth#login"
+  get "/auto_login", to: "auth#auto_login"
+  get "/user_is_authed", to: "auth#user_is_authed"
 
   get "/my-podcasts/:id", to: "podcasts#my_podcasts"
   get "/random", to: "podcasts#random"
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get "/my-activity/:id", to: "user_activities#my_activities"
   post "/listened", to: "user_activities#listened"
   post "/subscribe", to: "user_subscriptions#create"
-  post "/rating", to: "user_activities#rating"
+  post "/rating", to: "user_activities#rating" #change this name
   get "/podcast-rating", to: "user_activities#podcast_rating"
 
   # Profile routes

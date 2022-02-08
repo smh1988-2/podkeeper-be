@@ -1,6 +1,6 @@
 class UserRelationsController < ApplicationController
 
-    before_action :authorized, only: [:updated_at]
+    before_action :require_login, only: [:updated_at]
 
     def follow
         #debugger

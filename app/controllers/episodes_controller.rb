@@ -1,6 +1,6 @@
 class EpisodesController < ApplicationController
 
-    before_action :authorized, only: [:updated]
+    before_action :require_login, only: [:updated]
 
 
     def create

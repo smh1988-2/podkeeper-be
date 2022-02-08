@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
 
-    before_action :authorized, only: [:updated_at] 
+    before_action :require_login, only: [:updated_at] 
 
     def index
         render json: {"message: "=> "I'M ON THE INTERNET."}

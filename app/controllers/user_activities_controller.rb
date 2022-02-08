@@ -1,9 +1,9 @@
 class UserActivitiesController < ApplicationController
 
-    before_action :authorized, only: [:updated_at]
+    before_action :require_login, only: [:updated_at]
 
     def my_activities
-        activities = UserActivity.where(user_id: params[:id])
+        activities = UserActivity.where(user_id: params[:id]).order(created_at: :desc)
 
         render json: activities, include: [:podcast, :episode], status: :ok
     end
@@ -13,7 +13,7 @@ class UserActivitiesController < ApplicationController
         render json: listened, status: :ok
     end
 
-    def rating
+    def rating #change this name
         rating = UserActivity.create!(activity_params)
         render json: rating, status: :ok
     end
@@ -26,7 +26,6 @@ class UserActivitiesController < ApplicationController
         else
             render json: {"Message:" => "you haven't rated this podcast"}
         end
-
     end
 
     def updated_at
