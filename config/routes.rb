@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get "/auto_login", to: "auth#auto_login"
   get "/user_is_authed", to: "auth#user_is_authed"
 
+  # Podcast routes
   get "/my-podcasts/:id", to: "podcasts#my_podcasts"
   get "/random", to: "podcasts#random"
 
