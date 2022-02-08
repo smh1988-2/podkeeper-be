@@ -1,10 +1,7 @@
 class AuthController < ApplicationController
 
     skip_before_action :require_login, only: [:login, :auto_login]
-
-    # def encode_token(payload)
-    #     JWT.encode(payload, 'my_secret')
-    # end
+  # before_action :require_login
 
     # log in as an existing user
     def login
@@ -20,8 +17,10 @@ class AuthController < ApplicationController
       end
 
       def auto_login
+        #render json: user
         if session_user
-          render json: session_user
+          render json: {user: session_user}
+          #session_user
         else
           render json: {errors: "No user logged in."}
         end
@@ -30,13 +29,5 @@ class AuthController < ApplicationController
       def user_is_authed
         render json: {message: "You are authorized"}
       end
-
-    #   def logged_in?
-    #     !!session_user
-    #   end
-    
-    #   def require_login
-    #     render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
-    #   end
 
 end
