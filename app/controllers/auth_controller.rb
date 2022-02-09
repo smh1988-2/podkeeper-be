@@ -1,7 +1,6 @@
 class AuthController < ApplicationController
 
     skip_before_action :require_login, only: [:login, :auto_login]
-  # before_action :require_login
 
     # log in as an existing user
     def login
@@ -17,10 +16,8 @@ class AuthController < ApplicationController
       end
 
       def auto_login
-        #render json: user
         if session_user
           render json: {user: session_user}
-          #session_user
         else
           render json: {errors: "No user logged in."}
         end
