@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   post "/subscribe", to: "user_subscriptions#create"
   post "/rating", to: "user_activities#rating" #change this name
   get "/podcast-rating", to: "user_activities#podcast_rating"
+  get "friend-activity/:id", to: "user_activities#friend_activity"
 
   # Profile routes
   get "/user-search/:id", to: "user_relations#return_user"
