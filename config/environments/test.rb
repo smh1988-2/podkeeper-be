@@ -43,6 +43,22 @@ Rails.application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
+  config.action_mailer.delivery_method = :smtp
+  host = 'localhost:3000'
+  config.action_mailer.default_url_options = { :host => 'localhost:3000', protocol: 'http' }
+  
+config.action_mailer.default_url_options = { host: host }
+
+# SMTP settings for gmail
+config.action_mailer.smtp_settings = {
+  :address              => "smtp.gmail.com",
+  :port                 => 587,
+  :user_name            => "seanmhurley1988@gmail.com",
+  :password             => Rails.application.credentials.gmail[:password],
+  :authentication       => "plain",
+  :enable_starttls_auto => true
+}
+
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
