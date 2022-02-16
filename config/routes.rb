@@ -19,9 +19,11 @@ Rails.application.routes.draw do
   get "/my-activity/:id", to: "user_activities#my_activities"
   post "/listened", to: "user_activities#listened"
   post "/subscribe", to: "user_subscriptions#create"
-  post "/rating", to: "user_activities#rating" #change this name
+  post "/rating", to: "user_activities#rating"
   get "/podcast-rating", to: "user_activities#podcast_rating"
+  get "/episode-rating", to: "user_activities#get_episode_rating"
   get "friend-activity/:id", to: "user_activities#friend_activity"
+  get "total-time-listened/:id", to: "user_activities#total_time_listened" 
 
   # Profile routes
   get "/user-search/:id", to: "user_relations#return_user"

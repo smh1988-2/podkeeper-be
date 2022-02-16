@@ -10,18 +10,14 @@ class UsersController < ApplicationController
           token = encode_token(payload)
           render json: {user: user, include: [jwt: token]}, status: :ok
 
+          #wrap in if/else to handle errors
           UserMailer.with(user: user).welcome_email.deliver_now
-          # format.html { redirect_to(user, notice: 'User was successfully created.') }
 
         else
           render json: {errors: user.errors.full_messages}, status: :not_acceptable
         end
 
-          #wrap is if/else to handle errors
-
           
-
-          # #format.json { render json: user, status: :created, location: user }
         
       end
 
