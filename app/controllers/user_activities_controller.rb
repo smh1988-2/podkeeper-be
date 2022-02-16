@@ -12,11 +12,32 @@ class UserActivitiesController < ApplicationController
         render json: listened, status: :ok
     end
 
-    def rating #change this name
+    def total_time_listened
+        episodes = UserActivity.where(user_id: params[:id]).where(activity_type: "listened")
+        time_listened = 0
+        episodes.each { |episode| 
+            time_listened = time_listened + episode.episode.trackTimeMillis
+        }
+        render json: time_listened, status: :ok
+    end
+
+    def rating #change this name (episode, i think)
         rating = UserActivity.create!(activity_params)
         render json: rating, status: :ok
     end
 
+    # returns the rating of a given episode
+    def get_episode_rating
+        rating = UserActivity.where(user_id: params[:user_id], episode_id: params[:episode_id]).order(created_at: :desc).limit(1)
+
+        if rating
+            render json: rating, status: :ok
+        else
+            render json: {"Message:" => "you haven't rated this podcast"}
+        end
+    end
+
+    # returns the rating of a given podcast
     def podcast_rating
         rating = UserActivity.where(user_id: params[:user_id], podcast_id: params[:podcast_id]).order(created_at: :desc).limit(1)
 
@@ -32,7 +53,6 @@ class UserActivitiesController < ApplicationController
         activity =[]
         friends.each { |friend| 
             activity << friend.user2.user_activities
-            #.limit(2) <- limit the number of activities return for each user (maybe add type of activity logic in the backend rather than front?)
         }
         render json: activity, include: [:user, :podcast, :episode], status: :ok
     end
