@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
-  # skip_before_action :require_login, only: [:create]
-  before_action :require_login, only: [:updated_at]
+  skip_before_action :require_login, only: [:create]
+  # before_action :require_login, only: [:updated_at]
 
      # register a new user
      def create
@@ -15,7 +15,8 @@ class UsersController < ApplicationController
           # UserMailer.with(user: user).welcome_email.deliver_now
 
         else
-          render json: {errors: user.errors.full_messages}, status: :not_acceptable
+          render json: {"error:" => "you're hitting this error on signup"}, status: :not_acceptable
+          #errors: user.errors.full_messages
         end
         
       end
