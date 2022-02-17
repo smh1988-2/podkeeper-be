@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
-  skip_before_action :require_login, only: [:create]
+  # skip_before_action :require_login, only: [:create]
+  before_action :require_login, only: [:updated_at]
 
      # register a new user
      def create
@@ -16,9 +17,10 @@ class UsersController < ApplicationController
         else
           render json: {errors: user.errors.full_messages}, status: :not_acceptable
         end
-
-          
         
+      end
+
+      def updated_at
       end
 
       private
