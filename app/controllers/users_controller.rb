@@ -12,7 +12,7 @@ class UsersController < ApplicationController
           render json: {user: user, include: [jwt: token]}, status: :ok
 
           #wrap in if/else to handle errors
-          UserMailer.with(user: user).welcome_email.deliver_now
+          # UserMailer.with(user: user).welcome_email.deliver_now
 
         else
           render json: {errors: user.errors.full_messages}, status: :not_acceptable
