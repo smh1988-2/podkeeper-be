@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   skip_before_action :require_login, only: [:create]
-  # before_action :require_login, only: [:updated_at]
+  before_action :require_login, only: [:updated_at]
 
      # register a new user
      def create

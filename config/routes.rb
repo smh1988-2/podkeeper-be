@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :user_subscriptions
   resources :podcasts
   resources :user_relations
-  resources :users, only: [:create]
+  resources :users
+  #, only: [:create]
 
   # Auth routes
   post "/login", to: "auth#login"
